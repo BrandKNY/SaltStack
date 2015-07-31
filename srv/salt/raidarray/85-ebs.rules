@@ -1,0 +1,10 @@
+# Added for persistent loading of Read-Ahead block rules to optimize MongoDB reads
+## See: <http://docs.mongodb.org/ecosystem/platforms/amazon-ec2/>
+# Added each member of RAID set && the RAID volume itself (hence the 3 rules here)
+## See: <https://groups.google.com/forum/#!topic/mongodb-user/QI5FW0MTfBA>
+## -Brandon Kearns (Mar 5, 2015)
+
+{% for device in grains['SSDs'][1:] -%}
+ACTION=="add", KERNEL=="{{ device }}", ATTR{bdi/read_ahead_kb}="32"
+{% endfor -%}
+ACTION=="add", KERNEL=="{{ pillar['raidarray']['raiddev']}}", ATTR{bdi/read_ahead_kb}="32"

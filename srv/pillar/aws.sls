@@ -1,0 +1,3 @@
+aws:
+  key: [IAM USER ACCESS KEY ID HERE]
+  secretKey: [IAM USER ACCESS KEY CODE HERE]

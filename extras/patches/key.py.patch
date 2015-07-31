@@ -1,0 +1,29 @@
+--- /usr/lib/python2.6/site-packages/salt/key.py	2015-05-11 16:36:32.000000000 -0400
++++ /usr/lib/python2.6/site-packages/salt/key.py	2015-06-03 17:41:28.000000000 -0400
+@@ -493,6 +493,9 @@
+         if preserve_minions is None:
+             preserve_minions = []
+         m_cache = os.path.join(self.opts['cachedir'], self.ACC)
++        
++        print("Checking cache")
++        print(preserve_minions)
+         if not os.path.isdir(m_cache):
+             return
+         keys = self.list_keys()
+@@ -740,6 +743,7 @@
+             matches = match_dict
+         else:
+             matches = {}
++
+         for status, keys in matches.items():
+             for key in keys:
+                 try:
+@@ -750,7 +754,7 @@
+                     self.event.fire_event(eload, tagify(prefix='key'))
+                 except (OSError, IOError):
+                     pass
+-        self.check_minion_cache(preserve_minions=matches.get('minions', []))
++        self.check_minion_cache()
+         if self.opts.get('rotate_aes_key'):
+             salt.crypt.dropfile(self.opts['cachedir'], self.opts['user'])
+         return (

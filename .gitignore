@@ -1,0 +1,11 @@
+.idea/
+salt/pki/
+salt/salt_keys/*
+!salt_keys/placeholder.txt
+extras/GitRepoKey/*
+!extras/GitRepoKey/README
+salt/minion_id
+## these are created when editing with gedit such as
+## with sshfs mount
+*~
+*.*~
